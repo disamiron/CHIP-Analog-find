@@ -6,12 +6,7 @@ var oppacityXUnit = oppacity*a[unitBase.indexOf(unit)];
 var chipVolt = voltage.indexOf(volt);
 
 
-var option = []
-    // model:[],
-    // voltage:[],
-    // type:[],
-    // shell:[]
-
+var option = [];
 var answer = [];
 
 
@@ -48,26 +43,6 @@ function answerText(text,style,color) {
                                             a = " только " +  spr[3];
                                         };
                                         option.push({"model":modelCap[k],"voltage":voltage[i],"type":typeDielectric[j],"shell":typeShell[spr[0]],"text":a})
-                                        // option.voltage.push(voltage[i]);
-                                        // option.type.push(typeDielectric[j]);
-                                        // option.shell.push(typeShell[spr[0]]);
-                                        // var otvet1 = document.createElement("li");
-                                        // //пометка о особых конденсаторах
-                                        // var a = "";
-                                        // if (spr[3]) {
-                                        //     a = " только " +  spr[3];
-                                        // }
-
-                                        // otvet1.innerHTML= "Конденсатор " + modelCap[k] +" " +voltage[i]+"В "+oppacity+" "+unit+" "+typeDielectric[j]+" "+typeShell[spr[0]]+a;
-
-                                        // //выделение близких и аналогов
-                                        // if (chip>=spr[0]) {
-                                        //     otvet1.style.fontWeight="bold";
-                                        //     if(volt<=+voltage[i]) {
-                                        //         otvet1.style.color="red";
-                                        //     }
-                                        // }
-                                        // otvet.append(otvet1);
                                     }
                                 }
                             }
@@ -77,18 +52,6 @@ function answerText(text,style,color) {
             }
         }
 
-// option.sort(function(a,b){
-//     if (typeShell.indexOf(a.shell) > typeShell.indexOf(b.shell)) {
-//       return 1;
-//     }
-//     if (typeShell.indexOf(a.shell) < typeShell.indexOf(b.shell)) {
-//       return -1;
-//     }
-//     // a должно быть равным b
-//     return 0;
-//   });
-
-// option.push({"model":modelCap[k],"voltage":voltage[i],"type":typeDielectric[j],"shell":typeShell[spr[0]]})
 for (let spr of option) {
     if (spr["shell"]==shell && +spr["voltage"]>=+volt) {
         answer.push({"model":spr["model"],"voltage":spr["voltage"],"type":spr["type"],"shell":spr["shell"],"text":spr["text"]})
@@ -110,9 +73,6 @@ if (!answer.length) {
     if (answer.length) {
         answerText("Ближайшие аналоги в корпусе " + shell + ":","bold","#d98c1a")
     }
-    // if (!answer.length) {
-    //     answerText("Близких аналогов в корпусе " + shell + " не найдено.")
-    // }
 }
 
 
@@ -136,52 +96,6 @@ if (!answer.length) {
     answerText("Ближайших аналогов не найдено.","bold","#0b7506")
 }
 
-
-// var a2 = 2;
-// function lastChanse () {
-//     console.log("awd")
-//     for (let spr of option) {
-//         if (typeShell.indexOf(spr["shell"])+a2==chip || typeShell.indexOf(spr["shell"])-a2==chip) {
-//             console.log("123123")
-//             answer.push({"model":spr["model"],"voltage":spr["voltage"],"type":spr["type"],"shell":spr["shell"]})
-//         }
-//     }
-//     if (answer.length) {
-//         answerText("Ближайшие аналоги в другом корпусе:")
-//     }
-//     if (a2<14) {
-//         a2++;
-//         lastChanse();
-//     }
-//     if (a2>14) {
-//         answerText("Нету");
-//     }
-
-
-// }
-
-
-
-
-
-// console.log(option.shell);
-    // } else {
-    //     otvet.innerHTML="Нет в ряде"
-    // }
-    // return otvet;
-
-// option.model.filter
-// for (let spr of option) {
-//     spr[0].sort();
-// }
-// for (let p=0;p<option.model.length;p++) {
-//     if (option.shell[p]==shell) {
-//         answer.model.push(option.model[p]);
-//         answer.voltage.push(option.voltage[p]);
-//         answer.type.push(option.type[p]);
-//         answer.shell.push(option.shell[p]);
-//     }
-// }
 for (let l=0;l<answer.length;l++) {
     answerText("Конденсатор " + answer[l]["model"] + " " + answer[l]["voltage"] + "В " + oppacity + " " + unit + " " + answer[l]["type"] + " " + answer[l]["shell"] + answer[l]["text"])
 }
